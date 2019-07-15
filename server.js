@@ -23,7 +23,8 @@ app.listen(process.env.PORT || 3000, function () {
   console.log('Node.js listening ...');
 });
 
-app.post('/api/fileanalyse', upload.single(), function(req, res){
+app.post('/api/fileanalyse', upload.single("upfile"), function(req, res){
   console.log(req.file);
-  res.json({"Text": "Yo dude, you just uploaded a file!"})
+  res.json({"name":req.file.fieldname,
+    "type":req.file.mimetype,"size":req.file.size})
 });
